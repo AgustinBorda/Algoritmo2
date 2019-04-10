@@ -16,8 +16,12 @@ public class StringMatching{
         j++;
       }
       else{
-        j = 0; //sino, avanzamos en a y reiniciamos en b
-        i++;
+        if(j != 0){ //si no coinciden y b esta a medio recorrer, lo reseteamos
+          j=0;
+        }
+        else{ // si b esta en su inicio, avanzamos a
+          i++;
+        }
       }
     }
     if (i-j > (largoA-largoB)){ //si ya no quedan caracteres suficientes, a no contiene a b
