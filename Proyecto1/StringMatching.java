@@ -1,33 +1,33 @@
 public class StringMatching{
   /**
   *Comprueba si un String b es una subsecuencia de un String a
-  *@param a El String de mayor longitud
-  *@param b El String de menor longitud
+  *@param texto El String de mayor longitud
+  *@param palabra El String de menor longitud
   *@return Si b esta contenido en a
   */
-  public static boolean matchingFuerzaBruta(String a, String b){
-    int largoA = a.length();
-    int largoB = b.length(); //guardamos las longitudes para evitar recalcularlas
-    int i = 0;
-    int j = 0;
-    while(i-j <= (largoA-largoB) && j < largoB){ /*si i-j > la diferencia de las longitudes,ya no quedan caracteres suficientes en a para contener a b, si j > a la longitud de b, significa que ya encontramos b en a*/
-      if(a.charAt(i)==b.charAt(j)){
-        i++; //si a[i] y b[j] coinciden, avanzamos en ambas cadenas
+  public static boolean matchingFuerzaBruta(String texto, String palabra){
+    int largoTexto = texto.length();
+    int largoPalabra = palabra.length(); //guardamos las longitudes para evitar recalcularlas
+    int i = 0; //indicador del texto
+    int j = 0; //indicador de la palabra
+    while(i-j <= (largoTexto-largoPalabra) && j < largoPalabra){ /*si i-j > la diferencia de las longitudes,ya no quedan caracteres suficientes en el texto para contener a la palabra, si j > a la longitud de la palabra, significa que ya la encontramos en el texto*/
+      if(texto.charAt(i)==palabra.charAt(j)){
+        i++; //si texto[i] y palabra[j] coinciden, avanzamos en ambas cadenas
         j++;
       }
       else{
-        if(j != 0){ //si no coinciden y b esta a medio recorrer, lo reseteamos
+        if(j != 0){ //si no coinciden y la palabra esta a medio recorrer, reseteamos su indicador
           j=0;
         }
-        else{ // si b esta en su inicio, avanzamos a
+        else{ // si la palabra esta en su inicio, avanzamos el texto
           i++;
         }
       }
     }
-    if (i-j > (largoA-largoB)){ //si ya no quedan caracteres suficientes, a no contiene a b
+    if (i-j > (largoTexto-largoPalabra)){ //si ya no quedan caracteres suficientes, el texto no contiene a la palabra
       return false;
     }
-    else{ //sino, quiere decir que encontramos a b en a
+    else{ //sino, quiere decir que encontramos a la palabra en el texto
       return true;
     }
   }
