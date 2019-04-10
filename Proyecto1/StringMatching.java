@@ -19,16 +19,16 @@ public class StringMatching{
         if(j != 0){ //si no coinciden y la palabra esta a medio recorrer, reseteamos su indicador
           j=0;
         }
-        else{ // si la palabra esta en su inicio, avanzamos el texto
+        else{ //si la palabra esta en su inicio, avanzamos el texto
           i++;
         }
       }
-    }
-    if (i-j > (largoTexto-largoPalabra)){ //si ya no quedan caracteres suficientes, el texto no contiene a la palabra
-      return false;
-    }
-    else{ //sino, quiere decir que encontramos a la palabra en el texto
+    } //fin del ciclo
+    if (j >= largoPalabra){ //si j es mayor o igual al largo de la palabra, la encontramos
       return true;
+    }
+    else{ //sino, no quedan caracteres suficientes para que el texto contenga a la palabra
+      return false;
     }
   }
 
