@@ -1,38 +1,34 @@
 public class StringMatching{
-  /**
-  *Comprueba si un String b es una subsecuencia de un String a
-  *@param texto El String de mayor longitud
-  *@param palabra El String de menor longitud
-  *@return Si b esta contenido en a
-  */
-  public static boolean matchingFuerzaBruta(String texto, String palabra){
-    int largoTexto = texto.length();
-    int largoPalabra = palabra.length(); //guardamos las longitudes para evitar recalcularlas
-    int i = 0; //indicador del texto
-    int j = 0; //indicador de la palabra
-    while(i-j <= (largoTexto-largoPalabra) && j < largoPalabra){ /*si i-j > la diferencia de las longitudes,ya no quedan caracteres suficientes en el texto para contener a la palabra, si j > a la longitud de la palabra, significa que ya la encontramos en el texto*/
-      if(texto.charAt(i)==palabra.charAt(j)){
-        i++; //si texto[i] y palabra[j] coinciden, avanzamos en ambas cadenas
-        j++;
+//
+  public static int match(String text, String pattern){
+    int largoTexto = text.length();
+    int largoPalabra = pattern.length(); //guardamos las longitudes para evitar recalcularlas
+    int contadorTexto = 0;
+    while(largoTexto-contadorTexto >= largoPalabra){
+      if(text.substring(contadorTexto,contadorTexto+largoPalabra).equals(pattern)){
+        return contadorTexto;
       }
       else{
-        if(j != 0){ //si no coinciden y la palabra esta a medio recorrer, reseteamos su indicador
-          j=0;
-        }
-        else{ //si la palabra esta en su inicio, avanzamos el texto
-          i++;
-        }
+        contadorTexto++;
       }
-    } //fin del ciclo
-    if (j >= largoPalabra){ //si j es mayor o igual al largo de la palabra, la encontramos
-      return true;
     }
-    else{ //sino, no quedan caracteres suficientes para que el texto contenga a la palabra
-      return false;
-    }
+    return -1;
+  }
+//
+  public static int matchKMP(String text, String pattern){
+
+    return-1;
+  }
+
+  public static int[] tablaKMP(String pattern){
+    int[] tabla = new int[pattern.length()];
+    int posTabla = 1;
+    int lugarPatron = 0;
+    tabla[0] = -1;
+    return tabla;
   }
 
   public static void main (String[] args){
-    System.out.print(StringMatching.matchingFuerzaBruta(args[0],args[1])+ "\n");
+    System.out.print(StringMatching.match(args[0],args[1])+ "\n");
   }
 }
