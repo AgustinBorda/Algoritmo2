@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import java.lang.Math;
+import java.util.Map;
+import java.util.HashMap;
 public class LongestRepetition{
   private static ArrayList<String> subList(String text){
     ArrayList<String> sub = new ArrayList<String>();
@@ -25,8 +26,23 @@ public class LongestRepetition{
         }
       }
     }
+    
     return max;
   }
+
+private static int partition(String Text){
+  boolean iguales = true;
+  Map<Character, Integer> hash = new HashMap<Character, Integer>();//hacer con una tupla
+  Character elem = new Character();
+  Integer rep = new Integer();
+
+}
+
+  public static String repetitionDc(String text){
+    return "";
+  }
+
+
   public static void main(String[] args) {
     System.out.println(args[0].substring(0,2));
     //System.out.print("Resultado: "+LongestRepetition.repetition(args[0])+"\n");
