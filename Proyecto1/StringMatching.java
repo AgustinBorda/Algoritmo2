@@ -16,51 +16,57 @@ public class StringMatching{
     return -1;
   }
 
+   
    public static int matchKMP(String text, String pattern) {
    int[] tablaKMP = tablaKMP(pattern);
-
     int j = 0; 
     int i = 0; 
 
-    while (i < text.length()) { 
+    while (i < text.length()) { //inicio while
           
-      if (text.charAt(i) == pattern.charAt(j)) { // case 1
-        
+      if (text.charAt(i) == pattern.charAt(j)) { // caso 1
+       // Se encontró un char actual en j en la cadena de text
         j++;
-        if (j == pattern.length()) { 
-          return i - j+1; 
+        if (j == pattern.length()) {  //Se encontro la palabra
+
+          return i - j+1; //Devolvemos el indice de text de la palabra buscada
         }
-        i++; 
-      } else if (j > 0) { // case 2
-        
+        i++; //Avanza si no encuentra la palabra
+
+      } else if (j > 0) { // caso 2
+        //use failureTable para usar el puntero apuntado a la ubicación más cercana del prefijo de cadena utilizable
          j = tablaKMP[j];
-      } else { // case 3
-        
+      } else { // caso 3
+        // j esta en la posicion 0, así que reiniciamos la búsqueda con el índice i
         i++;
       }
-    }
-    return -1;
+    }//fin while
+    return -1; //retornamos -1 si no encontramos la palabra 
   }
 
+  /**
+   **Devuelve un int [] que apunta al último prefijo de cadena válido, dada la palbra
+   */
    public static int[] tablaKMP(String pattern) {
     int[] table = new int[pattern.length() + 1];
-    
+    // Los estados 0 y 1 están garantizados por el anterior.
     table[0] = -1;
     table[1] = 0;
 
-  
+    //los punteros apuntando a la última falla y la satte actual
+    
     int izq = 0;
     int der = 2;
 
-    while (der < table.length ){ 
-      if (pattern.charAt(der - 1) == pattern.charAt(izq)) { 
+    while (der < table.length ){ // EL DERECHO NUNCA SE MUEVE EL DERECHO HASTA ASIGNAR UN PUNTERO VALIDO
+      if (pattern.charAt(der - 1) == pattern.charAt(izq)) { // cuando los dos caracteres anteriores a la izquierda y la derecha son iguales, vincula ambos y avanza ambos
         izq++;
         table[der] = izq;
         der++;
-      }  else if (izq > 0) { 
-                              
+      }  else if (izq > 0) { //si la izquierda no está al principio, entonces envíe la izquierda hacia atrás
+                             //siguiendo el puntero ya establecido hacia donde apunta
         izq = table[izq];
-      } else { 
+      } else { // la izquierda ha caído desde el principio
           table[der] = izq;
           der++;
       }
