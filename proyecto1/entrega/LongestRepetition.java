@@ -23,7 +23,7 @@ public class LongestRepetition{
       aux = sub.get(i);//nos guardamos el elemento del arraylist
       if (aux.length() % 2 == 0 && aux.length() != 0){ /* si tiene longitud impar o longitud 0 (es nulo) no tiene sentido buscar el patron ahi*/
         if((aux.substring(0,aux.length()/2)).equals(aux.substring(aux.length()/2,aux.length()))){/*si sus 2 mitades son iguales, el patron es la primera de ellas*/
-          if(aux.length() / 2 > max.length()){
+            if(aux.length() / 2 > max.length()){
             max = aux.substring(0,aux.length()/2);/*si nuestro patron es mas largo que el maximo, reemplazamos el maximo*/
           }
         }
@@ -31,46 +31,6 @@ public class LongestRepetition{
     }
 
     return max;//retornamos el maximo
-  }
-
-/* 0 si esta en la izquierda, 1 si esta cruzado, 2 si estaen la derecha*/
-  public static int placeLongestRepetition(String text){
-    String p1;
-    String p2;
-    String c1;
-    String c2;
-    String maxMitades;
-    String maxCruzados;
-    int place;
-    if(text.length() == 1){
-      return 0;// si la repeticion es vacia, esta en todos lados, asi que es indistinto
-    }//caso base
-    else{
-      p1 = LongestRepetition.repetitionDc(text.substring(0,text.length()/2));
-      p2 = LongestRepetition.repetitionDc(text.substring(text.length()/2,text.length()));//llamadas recursivas
-      if (p1.length() >= p2.length()){
-        maxMitades = p1;
-        place = 0;
-      }
-      else{
-        maxMitades = p2;//nos quedamos el resultado mas largo de las llamadas recursivas
-        place = 2;
-      }
-      c1 = LongestRepetition.leftCrossed(text);
-      c2 = LongestRepetition.rightCrossed(text);//calculamos los patrones cruzados
-      if(c1.length() >= c2.length()){
-        maxCruzados = c1;
-      }
-      else{
-        maxCruzados = c2;
-      }//nos quedamos con el mas largo
-      if(maxMitades.length() >= maxCruzados.length()){
-        return place;/*si el resultado de la llamada que guardamos es mayor a la del patron cruzado, devolvemos el valor de la llamada*/
-      }
-      else{
-        return 1;/*sino, retornamos el patron cruzado que guardamos*/
-      }
-    }
   }
   /**
   *Calcula Longest Repetition utilizando divide & conquer
