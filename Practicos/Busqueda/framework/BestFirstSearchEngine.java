@@ -26,7 +26,9 @@ public class BestFirstSearchEngine<S extends State, Problem extends AbstractInfo
       if(problem.success(aux.getChild())){
         while(aux.getChild() != null){
           path.add((S)aux.getChild());
-          aux = aux.getParent();
+          if(aux.getParent() != null){
+            aux = aux.getParent();
+          }
         }
         return true;
       }

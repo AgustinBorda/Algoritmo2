@@ -22,10 +22,20 @@ public class BreadthFirstEngine<S extends State, Problem extends AbstractSearchP
     succesors.add(aux);
     while(!succesors.isEmpty()){
       aux = succesors.poll();
+      System.out.println("Agarrado: " + aux.getChild());
+      System.out.println("Resto:");
+      for(StateWithParent<S> aa : succesors){
+        System.out.println(aa.getChild());
+      }
       if(problem.success(aux.getChild())){
         while(aux.getChild() != null){
           path.add((S)aux.getChild());
-          aux = aux.getParent();
+          if(aux.getParent() != null){
+            aux = aux.getParent();
+          }
+          else{
+            aux = new StateWithParent();
+          }
         }
         return true;
       }
