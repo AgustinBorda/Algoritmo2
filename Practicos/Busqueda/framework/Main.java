@@ -1,8 +1,9 @@
  package framework;
  public class Main{
    public static void main(String[] args) {
-     BreadthFirstEngine motor = new BreadthFirstEngine(new EightQueens());
+     BestFirstSearchEngine motor = new BestFirstSearchEngine(new InformedQueens());
      System.out.println(motor.performSearch());
+     motor.report();
    }
 
  }

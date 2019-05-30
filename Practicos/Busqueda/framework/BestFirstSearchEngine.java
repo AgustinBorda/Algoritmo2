@@ -21,7 +21,9 @@ public class BestFirstSearchEngine<S extends State, Problem extends AbstractInfo
     PriorityQueue<StateWithParent<S>> succesors = new PriorityQueue(new HeuristicComparator(problem));
     StateWithParent<S> aux = new StateWithParent(s);
     succesors.add(aux);
-    while(!succesors.isEmpty()){
+    int i = 15;
+    while(!succesors.isEmpty()&& i>0){
+      i--;
       aux = succesors.poll();
       if(problem.success(aux.getChild())){
         while(aux.getChild() != null){
@@ -29,12 +31,15 @@ public class BestFirstSearchEngine<S extends State, Problem extends AbstractInfo
           if(aux.getParent() != null){
             aux = aux.getParent();
           }
+          else{
+            aux = new StateWithParent();
+          }
         }
         return true;
       }
       else{
-        StateWithParent aux2 = new StateWithParent();
         for(S state: problem.getSuccessors(aux.getChild())){
+          StateWithParent aux2 = new StateWithParent();
           aux2.SetChild(state);
           aux2.setParent(aux);
           succesors.add(aux2);

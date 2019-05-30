@@ -6,6 +6,6 @@ class HeuristicComparator<S extends StateWithParent> implements Comparator<S>{
     problem = p;
   }
   public int compare(S s1,S s2){
-    return Integer.compare(problem.heuristicFunction(s1.getChild()),problem.heuristicFunction(s2.getChild()));
+    return Integer.compare(problem.heuristicFunction(s2.getChild()),problem.heuristicFunction(s1.getChild()));
   }
 }
